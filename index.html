@@ -1,0 +1,243 @@
+import React, { useState, useEffect } from 'react';
+import { BookText, Sparkles, Target, Activity, UploadCloud, CheckCircle, Lightbulb } from 'lucide-react';
+
+// Main App Component
+const App = () => {
+  const [videoFile, setVideoFile] = useState(null);
+  const [feedback, setFeedback] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Handle video file upload
+  const handleVideoUpload = (event) => {
+    const file = event.target.files[0];
+    if (file && file.type.startsWith('video/')) {
+      setVideoFile(URL.createObjectURL(file));
+      setFeedback(''); // Clear previous feedback
+    } else {
+      // Changed alert message to Simplified Chinese
+      alert('请上传有效的视频文件。');
+      setVideoFile(null);
+    }
+  };
+
+  // Simulate AI feedback generation
+  const getAiFeedback = async () => {
+    if (!videoFile) {
+      // Changed feedback message to Simplified Chinese
+      setFeedback('请先上传您的练习视频。');
+      return;
+    }
+
+    setIsLoading(true);
+    // Changed loading message to Simplified Chinese
+    setFeedback('AI正在分析您的动作，请稍候...');
+
+    // Simulate API call to Gemini-2.0-flash for feedback
+    try {
+      // In a real application, you would send the video data (e.g., base64 encoded)
+      // to a backend service that then calls a video analysis AI model
+      // and then uses Gemini-2.0-flash to generate the text feedback.
+      // For this prototype, we'll simulate a delay and a predefined response.
+      await new Promise(resolve => setTimeout(resolve, 3000)); // Simulate network delay
+
+      // Changed simulated feedback to Simplified Chinese
+      const simulatedFeedback = `
+        AI分析结果：
+        您的髋部提拉动作流畅度良好，但左侧髋部的独立性有待加强。
+        建议：
+        请专注于单侧髋部提拉的强化练习，每组10次，重复3组。
+        您可以尝试在镜子前练习，观察左侧髋部是否能更独立地完成动作。
+        保持呼吸，放松肩膀，感受核心的发力。
+        继续加油，您的舞感正在逐步提升！
+      `;
+      setFeedback(simulatedFeedback);
+    } catch (error) {
+      console.error("Error getting AI feedback:", error);
+      // Changed error message to Simplified Chinese
+      setFeedback("获取AI反馈时发生错误，请稍后重试。");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-pink-50 font-inter text-gray-800">
+      {/* Header */}
+      <header className="py-6 px-4 sm:px-6 lg:px-8 bg-white shadow-sm">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <h1 className="text-3xl font-bold text-purple-700 flex items-center">
+            <Sparkles className="mr-2 text-pink-500" size={32} />
+            AI肚皮舞学习系统 {/* Changed title to Simplified Chinese */}
+          </h1>
+          <nav>
+            <ul className="flex space-x-6">
+              <li><a href="#features" className="text-lg text-gray-700 hover:text-purple-600 transition-colors duration-300">功能</a></li> {/* Changed text to Simplified Chinese */}
+              <li><a href="#how-it-works" className="text-lg text-gray-700 hover:text-purple-600 transition-colors duration-300">如何运作</a></li> {/* Changed text to Simplified Chinese */}
+              <li><a href="#cta" className="text-lg text-gray-700 hover:text-purple-600 transition-colors duration-300">立即体验</a></li> {/* Changed text to Simplified Chinese */}
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="relative py-20 px-4 sm:px-6 lg:px-8 text-center overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: "url('https://placehold.co/1920x1080/F0F0F0/808080?text=Belly+Dance+Background')" }}></div>
+        <div className="relative max-w-4xl mx-auto z-10">
+          <h2 className="text-5xl font-extrabold text-purple-800 leading-tight mb-6 animate-fade-in-down">
+            跳得准，更要跳得美。
+            <br />
+            你的AI舞感教练，随时在你身边。 {/* Changed text to Simplified Chinese */}
+          </h2>
+          <p className="text-xl text-gray-700 mb-10 leading-relaxed animate-fade-in-up">
+            结合权威肚皮舞书籍与智能AI互动模块，让您在家也能精准练习，逐步优化动作，真正跳出舞感与自信。 {/* Changed text to Simplified Chinese */}
+          </p>
+          <a href="#cta" className="inline-block bg-pink-500 hover:bg-pink-600 text-white font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 animate-bounce-in">
+            立即探索 {/* Changed text to Simplified Chinese */}
+          </a>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-7xl mx-auto text-center">
+          <h3 className="text-4xl font-bold text-purple-700 mb-12">核心功能</h3> {/* Changed text to Simplified Chinese */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {/* Feature 1: AI动作反馈 */}
+            <div className="bg-purple-50 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
+              <Sparkles className="text-pink-500 mb-4" size={48} />
+              <h4 className="text-2xl font-semibold text-purple-800 mb-4">AI动作反馈</h4> {/* Changed text to Simplified Chinese */}
+              <p className="text-gray-700">
+                上传您的练习视频，AI将精准识别动作细节，指出僵硬或不标准之处，让您不再盲目练习。 {/* Changed text to Simplified Chinese */}
+              </p>
+            </div>
+            {/* Feature 2: 个性化强化建议 */}
+            <div className="bg-purple-50 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
+              <Lightbulb className="text-pink-500 mb-4" size={48} />
+              <h4 className="text-2xl font-semibold text-purple-800 mb-4">个性化强化建议</h4> {/* Changed text to Simplified Chinese */}
+              <p className="text-gray-700">
+                根据您的动作特点，AI会给出专属的强化训练方案，例如“左胯发力不足，建议单侧提拉练习”。 {/* Changed text to Simplified Chinese */}
+              </p>
+            </div>
+            {/* Feature 3: 进度追踪与挑战 */}
+            <div className="bg-purple-50 p-8 rounded-xl shadow-md transform hover:scale-105 transition-transform duration-300 flex flex-col items-center text-center">
+              <Activity className="text-pink-500 mb-4" size={48} />
+              <h4 className="text-2xl font-semibold text-purple-800 mb-4">进度追踪与挑战</h4> {/* Changed text to Simplified Chinese */}
+              <p className="text-gray-700">
+                系统自动记录您的学习进度，并推送定制化的挑战任务，让您的学习充满动力，成果可见。 {/* Changed text to Simplified Chinese */}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-pink-50 to-purple-50">
+        <div className="max-w-7xl mx-auto text-center">
+          <h3 className="text-4xl font-bold text-purple-700 mb-12">它如何运作？</h3> {/* Changed text to Simplified Chinese */}
+          <div className="flex flex-col md:flex-row items-center justify-center space-y-10 md:space-y-0 md:space-x-12">
+            {/* Step 1: 阅读书籍 */}
+            <div className="flex flex-col items-center text-center max-w-sm">
+              <BookText className="text-purple-600 mb-4" size={64} />
+              <h4 className="text-2xl font-semibold text-purple-800 mb-2">1. 阅读权威书籍</h4> {/* Changed text to Simplified Chinese */}
+              <p className="text-gray-700">
+                从《肚皮舞基础动作分解与舞感训练》中学习系统的理论知识、分解步骤与舞感要领。 {/* Changed text to Simplified Chinese */}
+              </p>
+            </div>
+            {/* Arrow */}
+            <div className="hidden md:block text-purple-400 text-6xl font-extrabold">&rarr;</div>
+            <div className="block md:hidden text-purple-400 text-6xl font-extrabold rotate-90">&rarr;</div>
+
+            {/* Step 2: AI互动练习 */}
+            <div className="flex flex-col items-center text-center max-w-sm">
+              <UploadCloud className="text-purple-600 mb-4" size={64} />
+              <h4 className="text-2xl font-semibold text-purple-800 mb-2">2. AI互动练习</h4> {/* Changed text to Simplified Chinese */}
+              <p className="text-gray-700">
+                打开AI模块，选择章节，上传您的练习视频，获取即时、精准的动作反馈与强化建议。 {/* Changed text to Simplified Chinese */}
+              </p>
+            </div>
+            {/* Arrow */}
+            <div className="hidden md:block text-purple-400 text-6xl font-extrabold">&rarr;</div>
+            <div className="block md:hidden text-purple-400 text-6xl font-extrabold rotate-90">&rarr;</div>
+
+            {/* Step 3: 實現舞感升級 */}
+            <div className="flex flex-col items-center text-center max-w-sm">
+              <CheckCircle className="text-purple-600 mb-4" size={64} />
+              <h4 className="text-2xl font-semibold text-purple-800 mb-2">3. 实现舞感升级</h4> {/* Changed text to Simplified Chinese */}
+              <p className="text-gray-700">
+                通过持续的个性化练习与AI指导，您的动作将更标准、舞感更流畅，自信展现您的美丽。 {/* Changed text to Simplified Chinese */}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Interaction Demo Section (Placeholder) */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <h3 className="text-4xl font-bold text-purple-700 mb-12">体验AI动作反馈</h3> {/* Changed text to Simplified Chinese */}
+          <p className="text-gray-700 text-lg mb-8">
+            上传一段您的肚皮舞练习视频，让AI为您提供初步的动作分析和建议。 {/* Changed text to Simplified Chinese */}
+          </p>
+          <div className="bg-purple-50 p-8 rounded-xl shadow-md">
+            <input
+              type="file"
+              accept="video/*"
+              onChange={handleVideoUpload}
+              className="block w-full text-sm text-gray-700
+                file:mr-4 file:py-2 file:px-4
+                file:rounded-full file:border-0
+                file:text-sm file:font-semibold
+                file:bg-pink-100 file:text-pink-700
+                hover:file:bg-pink-200 mb-6 cursor-pointer"
+            />
+            {videoFile && (
+              <div className="mb-6">
+                <video controls src={videoFile} className="w-full max-h-96 rounded-lg shadow-lg mx-auto" />
+              </div>
+            )}
+            <button
+              onClick={getAiFeedback}
+              disabled={!videoFile || isLoading}
+              className={`bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-all duration-300 ${
+                (!videoFile || isLoading) ? 'opacity-50 cursor-not-allowed' : 'transform hover:scale-105'
+              }`}
+            >
+              {isLoading ? '分析中...' : '获取AI反馈'} {/* Changed text to Simplified Chinese */}
+            </button>
+            {feedback && (
+              <div className="mt-8 p-6 bg-white border border-purple-200 rounded-lg text-left whitespace-pre-wrap">
+                <h4 className="text-xl font-semibold text-purple-700 mb-3">AI分析结果：</h4> {/* Changed text to Simplified Chinese */}
+                <p className="text-gray-800">{feedback}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section id="cta" className="py-20 px-4 sm:px-6 lg:px-8 bg-pink-500 text-white text-center">
+        <div className="max-w-4xl mx-auto">
+          <h3 className="text-4xl font-bold mb-6">准备好提升您的肚皮舞技艺了吗？</h3> {/* Changed text to Simplified Chinese */}
+          <p className="text-xl mb-10">
+            立即获取《肚皮舞基础动作分解与舞感训练》书籍，并体验AI智能教练的魔力，开启您的舞感升级之旅！ {/* Changed text to Simplified Chinese */}
+          </p>
+          <a href="#" className="inline-block bg-white text-pink-500 font-bold py-4 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300">
+            立即预订书籍 & 体验AI {/* Changed text to Simplified Chinese */}
+          </a>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 px-4 sm:px-6 lg:px-8 bg-gray-800 text-gray-300 text-center">
+        <div className="max-w-7xl mx-auto">
+          <p>&copy; 2025 AI肚皮舞学习系统. 版权所有.</p> {/* Changed text to Simplified Chinese */}
+          <p className="mt-2 text-sm">
+            本产品旨在辅助学习，AI建议仅供参考。请在专业老师指导下进行练习。 {/* Changed text to Simplified Chinese */}
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default App;
