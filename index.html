@@ -3,76 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI肚皮舞学习系统</title>
-    <!-- 引入外部样式和字体 -->
+    <title>肚皮舞基础动作学习系统：书本+AI智能教练 - 贵州无双舞蹈</title>
+    <meta name="description" content="贵州无双舞蹈推出革命性肚皮舞基础学习方案！结合权威纸质书与AI动作识别教练，提供个性化反馈与强化建议，助你跳出自信与舞感。立即探索！">
+    <!-- Tailwind CSS CDN for basic styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* 自定义样式 */
+        /* Custom styles for Inter font and general body */
         body {
-            font-family: 'Noto Sans SC', sans-serif;
-            background: linear-gradient(to bottom right, #fdf6ff, #f3e8ff);
+            font-family: 'Inter', sans-serif;
+            @apply bg-gray-50 text-gray-800;
         }
-        .text-gradient {
-            background: linear-gradient(to right, #8A2BE2, #A020F0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
+        /* Custom button styles */
+        .btn {
+            @apply inline-block px-8 py-3 rounded-full text-lg font-semibold transition duration-300 ease-in-out;
         }
-        .sparkle {
-            font-size: 2.5rem;
-            color: #A020F0;
+        .btn-primary {
+            @apply bg-purple-600 text-white hover:bg-purple-700 shadow-lg;
+        }
+        .btn-secondary {
+            @apply bg-white text-purple-600 border border-purple-600 hover:bg-purple-50 hover:text-purple-700;
+        }
+        /* Ensure images are responsive */
+        img {
+            @apply max-w-full h-auto rounded-lg;
+        }
+        /* Container for content width */
+        .container {
+            @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
         }
     </style>
 </head>
-<body class="bg-purple-50 text-gray-800">
+<body>
 
-    <!-- 头部导航栏 -->
-    <header class="container mx-auto px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center">
-             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="url(#gradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#8A2BE2;stop-opacity:1" />
-                        <stop offset="100%" style="stop-color:#A020F0;stop-opacity:1" />
-                    </linearGradient>
-                </defs>
-                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
-                <path d="M12 12a6 6 0 0 0-9 9"/>
-                <path d="M18 3a6 6 0 0 0-9 9"/>
-            </svg>
-            <h1 class="ml-3 text-2xl font-bold text-gradient">AI肚皮舞学习系统</h1>
+    <!-- 1. 导航栏 (Navigation Bar) -->
+    <header class="bg-white shadow-sm py-4 sticky top-0 z-50">
+        <div class="container flex justify-between items-center">
+            <div class="logo text-2xl font-bold text-purple-700">
+                <a href="#">贵州无双舞蹈</a>
+            </div>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-6">
+                    <li><a href="#hero" class="text-gray-600 hover:text-purple-600 transition duration-200">主页</a></li>
+                    <li><a href="#about-book" class="text-gray-600 hover:text-purple-600 transition duration-200">关于本书</a></li>
+                    <li><a href="#ai-coach" class="text-gray-600 hover:text-purple-600 transition duration-200">AI智能教练</a></li>
+                    <li><a href="#testimonials" class="text-gray-600 hover:text-purple-600 transition duration-200">用户案例</a></li>
+                    <li><a href="#purchase" class="text-gray-600 hover:text-purple-600 transition duration-200">购买</a></li>
+                    <li><a href="#contact" class="text-gray-600 hover:text-purple-600 transition duration-200">联系我们</a></li>
+                </ul>
+            </nav>
+            <!-- Mobile menu button (hidden for simplicity, but good to note) -->
+            <button class="md:hidden text-gray-600 hover:text-purple-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
         </div>
-        <nav class="hidden md:flex space-x-8 text-lg">
-            <a href="#" class="text-gray-600 hover:text-purple-600">功能</a>
-            <a href="#" class="text-gray-600 hover:text-purple-600">如何运作</a>
-            <a href="#" class="bg-purple-600 text-white px-5 py-2 rounded-full hover:bg-purple-700 transition">立即体验</a>
-        </nav>
     </header>
 
-    <!-- 主要内容区域 -->
-    <main class="container mx-auto px-6 text-center" style="padding-top: 10vh; padding-bottom: 20vh; position: relative;">
-        <!-- 背景里的水印文字 -->
-        <div class="absolute inset-0 flex items-center justify-center -z-10">
-            <h1 class="text-9xl font-black text-gray-200 opacity-30 select-none">Belly Dance Background</h1>
+    <!-- 2. 首屏英雄区 (Hero Section) -->
+    <section id="hero" class="hero-section bg-gradient-to-r from-purple-500 to-pink-500 text-white py-20 md:py-32 text-center relative overflow-hidden">
+        <div class="container z-10 relative">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">跳得准，更要跳得美。</h1>
+            <h2 class="text-2xl md:text-3xl font-semibold mb-6">— 你的AI舞感教练，随时在你身边。</h2>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">贵州无双舞蹈 | 革命性双模学习系统：权威纸质书 + AI智能动作反馈</p>
+            <div class="hero-benefits grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 max-w-3xl mx-auto">
+                <div class="p-4 bg-white bg-opacity-20 rounded-lg shadow-md">
+                    <p class="font-bold text-lg">🔥 告别僵硬</p>
+                    <p class="text-sm opacity-80">纠正错误动作，让舞姿更流畅。</p>
+                </div>
+                <div class="p-4 bg-white bg-opacity-20 rounded-lg shadow-md">
+                    <p class="font-bold text-lg">🚀 舞感飞跃</p>
+                    <p class="text-sm opacity-80">提升身体控制，释放内在美感。</p>
+                </div>
+                <div class="p-4 bg-white bg-opacity-20 rounded-lg shadow-md">
+                    <p class="font-bold text-lg">🏠 在家精进</p>
+                    <p class="text-sm opacity-80">AI教练时刻陪练，告别课后迷茫。</p>
+                </div>
+            </div>
+            <div class="cta-buttons space-x-4">
+                <a href="#purchase" class="btn btn-primary">立即购买学习套装</a>
+                <a href="#problem" class="btn btn-secondary">了解更多</a>
+            </div>
         </div>
-        
-        <!-- 主要标题 -->
-        <h2 class="text-6xl font-bold mb-4 text-gradient leading-tight">
-            跳得准，更要跳得美。
-        </h2>
-        <h3 class="text-5xl font-bold mb-8 text-gradient leading-tight">
-            你的AI舞感教练，随时在你身边。
-        </h3>
-        
-        <!-- 副标题描述 -->
-        <p class="max-w-3xl mx-auto text-xl text-gray-500">
-            结合权威肚皮舞书籍与智能AI互动模块，让您在家也能精准练习，逐步优化动作，真正跳出舞感与自信。
-        </p>
-    </main>
+        <!-- Decorative elements for background -->
+        <div class="absolute inset-0 bg-cover bg-center opacity-10" style="background-image: url('https://placehold.co/1920x1080/6A0DAD/FFFFFF?text=Bellydance+Hero');"></div>
+    </section>
+
+    <!-- 3. 问题痛点区 (Problem/Pain Points Section) -->
+    <section id="problem" class="problem-section py-16 bg-white">
+        <div class="container text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">肚皮舞学习，你是否也遇到这些困扰？</h2>
+            <div class="pain-points-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="pain-point-item p-6 bg-gray-100 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+                    <div class="text-5xl mb-4">😩</div>
+                    <h3 class="text-xl font-semibold mb-2">动作总是不标准？</h3>
+                    <p class="text-gray-600">课堂上学会，回家一练就走样。</p>
+                </div>
+                <div class="pain-point-item p-6 bg-gray-100 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+                    <div class="text-5xl mb-4">🤔</div>
+                    <h3 class="text-xl font-semibold mb-2">不知错在哪里？</h3>
+                    <p class="text-gray-600">缺乏即时反馈，进步停滞不前。</p>
+                </div>
+                <div class="pain-point-item p-6 bg-gray-100 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+                    <div class="text-5xl mb-4">😓</div>
+                    <h3 class="text-xl font-semibold mb-2">舞感迟迟没提升？</h3>
+                    <p class="text-gray-600">动作僵硬，缺少舞蹈的流动性。</p>
+                </div>
+                <div class="pain-point-item p-6 bg-gray-100 rounded-lg shadow-md transform hover:scale-105 transition duration-300">
+                    <div class="text-5xl mb-4">⏳</div>
+                    <h3 class="text-xl font-semibold mb-2">老师不能常伴左右？</h3>
+                    <p class="text-gray-600">渴望随时随地的专业指导。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. 解决方案区 (Solution Section) -->
+    <section id="solution" class="solution-section py-16 bg-purple-50">
+        <div class="container text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-purple-800">为你而生：双模学习，舞动奇迹</h2>
+            <p class="text-lg text-gray-700 mb-12 max-w-3xl mx-auto">贵州无双舞蹈汇聚多年教学精髓，打造出这套独一无二的学习系统。它不再只是一本传统书籍，而是您舞蹈旅程中不可或缺的智能伙伴。</p>
+            <div class="solution-blocks grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div id="about-book" class="solution-block bg-white p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8">
+                    <div class="block-image flex-shrink-0 w-48 h-auto">
+                        <img src="https://placehold.co/300x400/8A2BE2/FFFFFF?text=Book+Cover" alt="肚皮舞书籍封面" onerror="this.onerror=null;this.src='https://placehold.co/300x400/8A2BE2/FFFFFF?text=Book+Cover';" class="rounded-lg shadow-xl">
+                    </div>
+                    <div class="block-content text-left">
+                        <h3 class="text-2xl font-bold mb-3 text-purple-700">《肚皮舞基础动作分解与舞感训练》</h3>
+                        <p class="text-gray-700">系统梳理肚皮舞核心基础动作，配以详细图解、身体控制要点和常见误区。是您理解舞蹈理论、建立肌肉记忆的权威指南。</p>
+                    </div>
+                </div>
+                <div id="ai-coach" class="solution-block bg-white p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8">
+                    <div class="block-image flex-shrink-0 w-48 h-auto">
+                        <img src="https://placehold.co/300x400/4B0082/FFFFFF?text=AI+App+Screen" alt="AI应用截图" onerror="this.onerror=null;this.src='https://placehold.co/300x400/4B0082/FFFFFF?text=AI+App+Screen';" class="rounded-lg shadow-xl">
+                    </div>
+                    <div class="block-content text-left">
+                        <h3 class="text-2xl font-bold mb-3 text-purple-700">您的专属AI舞蹈私教</h3>
+                        <p class="text-gray-700">扫描书中二维码，即刻启动AI模块。它能实时识别您的动作，给出个性化强化建议，并根据您的进度推送专属练习方案，让每次练习都有效。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. AI核心功能区 (AI Core Features Section) -->
+    <section class="ai-features-section py-16 bg-gray-50">
+        <div class="container text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">AI智能教练：如何带你飞跃？</h2>
+            <div class="features-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="feature-item p-6 bg-white rounded-lg shadow-md text-center">
+                    <div class="text-5xl mb-4 text-purple-600">✨</div>
+                    <h3 class="text-xl font-semibold mb-2">实时动作识别与纠错</h3>
+                    <p class="text-gray-600">AI精准分析您的髋部角度、胸部孤立等细节，即时指出偏差，让您告别“似是而非”。</p>
+                </div>
+                <div class="feature-item p-6 bg-white rounded-lg shadow-md text-center">
+                    <div class="text-5xl mb-4 text-purple-600">💡</div>
+                    <h3 class="text-xl font-semibold mb-2">个性化强化建议</h3>
+                    <p class="text-gray-600">不只告诉你错在哪，更给你专属练习方案，针对性提升弱点，如“左胯发力不足，建议单侧强化训练”。</p>
+                </div>
+                <div class="feature-item p-6 bg-white rounded-lg shadow-md text-center">
+                    <div class="text-5xl mb-4 text-purple-600">🎥</div>
+                    <h3 class="text-xl font-semibold mb-2">分章节视频讲解</h3>
+                    <p class="text-gray-600">对应书本内容，提供老师亲自录制的高清分解视频，配合AI指导，理解更深入。</p>
+                </div>
+                <div class="feature-item p-6 bg-white rounded-lg shadow-md text-center">
+                    <div class="text-5xl mb-4 text-purple-600">📈</div>
+                    <h3 class="text-xl font-semibold mb-2">进度日志与挑战任务</h3>
+                    <p class="text-gray-600">记录您的练习里程碑，并自动推送趣味挑战，激发学习动力，让进步看得见。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 信任与隐私声明 (Trust & Privacy Section) -->
+    <section class="trust-privacy-section py-16 bg-purple-600 text-white">
+        <div class="container text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12">您的信任，我们的承诺</h2>
+            <div class="trust-points grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="trust-item p-6 bg-white bg-opacity-20 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-2">精准建议，科学依据</h3>
+                    <p class="text-sm opacity-90">AI模型基于海量舞蹈数据训练，并持续迭代优化，确保建议的专业性和有效性。</p>
+                </div>
+                <div class="trust-item p-6 bg-white bg-opacity-20 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-2">数据安全，隐私保护</h3>
+                    <p class="text-sm opacity-90">您的练习录像默认本地处理，严格保护个人隐私，数据上传权限完全由您掌控。</p>
+                </div>
+                <div class="trust-item p-6 bg-white bg-opacity-20 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-2">温暖陪伴，而非冰冷工具</h3>
+                    <p class="text-sm opacity-90">AI语气模仿小婷老师的教学风格，鼓励而非评判，让您的学习充满温情与乐趣。</p>
+                </div>
+                <div class="trust-item p-6 bg-white bg-opacity-20 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-2">舞蹈是自由的</h3>
+                    <p class="text-sm opacity-90">AI提供的是建议，而非僵硬的标准。我们鼓励您探索自己的舞动风格，AI是您的助手，而非限制。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. 用户案例/推荐区 (Testimonials Section) -->
+    <section id="testimonials" class="testimonials-section py-16 bg-white">
+        <div class="container text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">她们都已受益！听听学员怎么说：</h2>
+            <div class="testimonials-slider grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="testimonial-item p-6 bg-gray-100 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <img src="https://placehold.co/80x80/9333EA/FFFFFF?text=小雅" alt="小雅头像" onerror="this.onerror=null;this.src='https://placehold.co/80x80/9333EA/FFFFFF?text=小雅';" class="avatar w-20 h-20 rounded-full object-cover mb-4 ring-4 ring-purple-300">
+                    <p class="text-gray-700 mb-3">"以前在家练舞总觉得没方向，AI教练就像小婷老师在我身边一样，每次练习都有明确的目标！"</p>
+                    <cite class="font-semibold text-purple-700">— 小雅，肚皮舞爱好者</cite>
+                </div>
+                <div class="testimonial-item p-6 bg-gray-100 rounded-lg shadow-md flex flex-col items-center text-center">
+                    <img src="https://placehold.co/80x80/4B0082/FFFFFF?text=Lily" alt="Lily头像" onerror="this.onerror=null;this.src='https://placehold.co/80x80/4B0082/FFFFFF?text=Lily';" class="avatar w-20 h-20 rounded-full object-cover mb-4 ring-4 ring-purple-300">
+                    <p class="text-gray-700 mb-3">"没想到AI能把动作细节分析得这么到位，我的胯部提拉终于找到感觉了，舞感大大提升！"</p>
+                    <cite class="font-semibold text-purple-700">— Lily，初级学员</cite>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. 购买/订购区 (Purchase/Order Section) -->
+    <section id="purchase" class="purchase-section py-16 bg-purple-50">
+        <div class="container text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-purple-800">立即开启您的肚皮舞进化之旅！</h2>
+            <div class="product-options grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="product-card bg-white p-8 rounded-xl shadow-lg border-2 border-purple-200">
+                    <h3 class="text-2xl font-bold mb-4 text-purple-700">标准套装</h3>
+                    <p class="price text-4xl font-extrabold text-purple-600 mb-6">¥399.00</p>
+                    <ul class="text-left text-gray-700 mb-8 space-y-2">
+                        <li>✅ 权威纸质书籍一本</li>
+                        <li>✅ AI基础功能（动作识别、核心建议）</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary w-full">立即购买</a>
+                </div>
+                <div class="product-card bg-white p-8 rounded-xl shadow-lg border-2 border-purple-600 transform scale-105 relative z-10">
+                    <div class="absolute -top-4 right-4 bg-yellow-400 text-yellow-900 text-xs px-3 py-1 rounded-full font-bold">热销推荐</div>
+                    <h3 class="text-2xl font-bold mb-4 text-purple-700">高级套装</h3>
+                    <p class="price text-4xl font-extrabold text-purple-600 mb-6">¥699.00</p>
+                    <ul class="text-left text-gray-700 mb-8 space-y-2">
+                        <li>✅ 权威纸质书籍一本</li>
+                        <li>✅ AI进阶功能（更多练习模式、专属挑战）</li>
+                        <li>✅ VIP社群访问权限</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary w-full">立即购买</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. 常见问题 (FAQ Section) -->
+    <section class="faq-section py-16 bg-white">
+        <div class="container text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-gray-900">常见问题</h2>
+            <div class="faq-items max-w-3xl mx-auto text-left">
+                <div class="faq-item mb-6 p-4 bg-gray-100 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Q: AI识别准确吗？</h3>
+                    <p class="text-gray-600">A: 我们的AI模型基于大量专业肚皮舞动作数据训练，并持续优化，能够提供高精度的动作识别和建议。您可以通过App内的反馈功能帮助我们进一步提升准确性。</p>
+                </div>
+                <div class="faq-item mb-6 p-4 bg-gray-100 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Q: 我的手机型号支持吗？</h3>
+                    <p class="text-gray-600">A: AI互动模块支持主流的iOS和Android智能手机。建议使用较新的设备以获得最佳体验。具体要求请查看App商店页面。</p>
+                </div>
+                <div class="faq-item mb-6 p-4 bg-gray-100 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Q: 书籍和App是分开购买的吗？</h3>
+                    <p class="text-gray-600">A: 我们将书籍和AI模块打包成学习套装进行销售，以确保您获得最完整的学习体验。书中将提供二维码引导您激活AI功能。</p>
+                </div>
+                <div class="faq-item p-4 bg-gray-100 rounded-lg shadow-sm">
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Q: 遇到技术问题怎么办？</h3>
+                    <p class="text-gray-600">A: 如果您在使用过程中遇到任何技术问题，可以通过App内的客服功能或联系我们的官方邮箱/微信客服，我们将尽快为您解决。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. 页脚 (Footer) -->
+    <footer id="contact" class="footer bg-gray-800 text-white py-10">
+        <div class="container flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <div class="footer-logo text-2xl font-bold mb-4 md:mb-0">贵州无双舞蹈</div>
+            <div class="footer-links mb-4 md:mb-0">
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="hover:text-purple-300 transition duration-200">隐私政策</a></li>
+                    <li><a href="#" class="hover:text-purple-300 transition duration-200">服务条款</a></li>
+                    <li><a href="#" class="hover:text-purple-300 transition duration-200">常见问题</a></li>
+                </ul>
+            </div>
+            <div class="social-media flex space-x-4">
+                <a href="#" target="_blank" class="hover:opacity-75 transition duration-200">
+                    <img src="https://placehold.co/32x32/FFFFFF/8A2BE2?text=WX" alt="微信" onerror="this.onerror=null;this.src='https://placehold.co/32x32/FFFFFF/8A2BE2?text=WX';" class="w-8 h-8 rounded-full">
+                </a>
+                <a href="#" target="_blank" class="hover:opacity-75 transition duration-200">
+                    <img src="https://placehold.co/32x32/FFFFFF/8A2BE2?text=DY" alt="抖音" onerror="this.onerror=null;this.src='https://placehold.co/32x32/FFFFFF/8A2BE2?text=DY';" class="w-8 h-8 rounded-full">
+                </a>
+                <a href="#" target="_blank" class="hover:opacity-75 transition duration-200">
+                    <img src="https://placehold.co/32x32/FFFFFF/8A2BE2?text=XHS" alt="小红书" onerror="this.onerror=null;this.src='https://placehold.co/32x32/FFFFFF/8A2BE2?text=XHS';" class="w-8 h-8 rounded-full">
+                </a>
+            </div>
+        </div>
+        <p class="copyright text-center text-gray-400 mt-8">&copy; 2025 贵州无双舞蹈. 版权所有.</p>
+    </footer>
 
 </body>
 </html>
